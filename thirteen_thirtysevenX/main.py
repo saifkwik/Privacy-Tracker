@@ -1,11 +1,21 @@
-import pprint
+
 
 from value_scrape import search
 from data_scrape import main
 from database import collection
 
 
+def delete_existing_document():
+    myquery = {"Search-term": search}
+    x = collection.delete_one(myquery)
+    print(x.deleted_count, " documents deleted.")
+    return True
+
+
 def get_values():
+    if delete_existing_document():
+        query = {'Search-term': search, 'Results': []}
+        r = collection.insert_one(query)
     main()
     print(search)
     t = collection.find({'Search-term': search})
@@ -21,9 +31,6 @@ def get_values():
         downloads.append(int(search_data[x]['Downloads']))
         seeders.append(int(search_data[x]['Seeders']))
         leechers.append(int(search_data[x]['Leechers']))
-    # print(downloads)
-    # print(seeders)
-    # print(leechers)
 
     print(f'{search}\nVerified Downloads = {sum(downloads)}\nTotal Seeders = {sum(seeders)}\n'
           f'Total Leechers = {sum(leechers)}')

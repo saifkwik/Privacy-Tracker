@@ -28,7 +28,7 @@ search = take_input()
 def value_scrape(page_number):
     dict_obj = my_dictionary()
     for pages in range(1, page_number):
-        browser = webdriver.Chrome(executable_path="driver\\chromedriver.exe")
+        browser = webdriver.Chrome(executable_path="../driver/chromedriver.exe")
         url = f"https://www.1337x.to/search/{search}/{pages}/"
         browser.get(url)
         html_source = browser.page_source

@@ -12,13 +12,14 @@ base_1337x = "https://www.1337x.to"
 my_dict = value_scrape(5)
 # print(my_dict)
 
-url_list = list(my_dict.values())
+# query = {'Search-term': search, 'Results': []}
+# r = collection.insert_one(query)
 
-query = {'Search-term': search, 'Results': []}
-r = collection.insert_one(query)
+url_list = list(my_dict.values())
 
 
 def scraped_data(url):
+
     final_url = base_1337x + url
     print(final_url)
 
@@ -26,7 +27,7 @@ def scraped_data(url):
         if value == url:
             name = key
 
-    browser = webdriver.Chrome(executable_path="driver\\chromedriver.exe")
+    browser = webdriver.Chrome(executable_path="../driver/chromedriver.exe")
 
     browser.get(final_url)
     html_source = browser.page_source
@@ -80,6 +81,5 @@ def main():
     document = collection.find({'Search-term': "1337x search"})
     for info in document:
         pprint.pprint(info)
-
 
 # main()
