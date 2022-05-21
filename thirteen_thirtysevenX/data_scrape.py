@@ -10,10 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 base_1337x = "https://www.1337x.to"
 
 my_dict = value_scrape(5)
-# print(my_dict)
 
-# query = {'Search-term': search, 'Results': []}
-# r = collection.insert_one(query)
 
 url_list = list(my_dict.values())
 
